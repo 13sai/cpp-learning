@@ -15,8 +15,8 @@ class Singleton
 {
     public:
         // = delete,用于定义删除函数，阻止拷贝
-        Singleton( Singleton const& ) =delete;
-        Singleton& operator = (Singleton const&) =delete;
+        Singleton( Singleton const& ) = delete;
+        Singleton& operator = (Singleton const&) = delete;
 
         static Singleton* get()
         {

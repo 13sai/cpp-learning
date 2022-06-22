@@ -8,6 +8,8 @@
  * 
  * 抽象工厂
  */
+// #include <> 直接从编译器自带的函数库中寻找文件
+// #include "" 是先从自定义的文件中找 ，如果找不到在从函数库中寻找文件
 #include <iostream>
 using namespace std;
 
@@ -15,9 +17,9 @@ class ProductA
 {
     public:
         // 函数前 ~ 表示析构函数
-        // virtual 虚函数，多态
         virtual ~ProductA() {}
 
+        // virtual 虚函数，多态
         virtual const char* getName() = 0;
 };
 
@@ -29,6 +31,7 @@ class ProductB
         virtual const char* getName() = 0;
 };
 
+// : 类的继承
 class ConcreteProductAX: public ProductA
 {
     public: ~ConcreteProductAX() {}
@@ -114,6 +117,7 @@ class FactoryY: public AbstractFactory
 
 int main()
 {
+    // new FactoryX 调用构建函数
     FactoryX *factoryX = new FactoryX();
     FactoryY *factoryY = new FactoryY();
 
@@ -129,6 +133,9 @@ int main()
     ProductB *by = factoryY->createProductB();
     cout << "Product4: " << by->getName() << endl;
 
+    // delete 运算符:用以释放动态分配的内存空间
+    // 如果是用 new 分配的内存空间，比如动态分配了一个数组，那么释放时，应使用 delete[] p;
+    // 另外还要注意，释放一个指针，并不会使该指针的值变为 NULL
     delete ax;
     delete ay;
     delete bx;
